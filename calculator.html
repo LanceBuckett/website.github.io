@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nisotopes | Standalone IDMS Workstation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { padding: 2rem; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 1000px; margin: 0 auto; width: 100%;">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h2>Nisotopes Standalone IDMS Workstation</h2>
+                <p style="color: var(--text-muted);">Amount ratio <i>n</i><sub>ref</sub> / <i>n</i><sub>IS</sub> calibration curve workstation with toggleable SD/SEM error bars.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="addStandardRow()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">+ Add Standard Point</button>
+        </div>
+
+        <div class="calc-grid-full">
+            <div class="card">
+                <h3>Calibration Standards (Fully Editable & Expandable)</h3>
+                
+                <div class="file-drop-zone" onclick="document.getElementById('calibFile').click()" style="margin-bottom: 1rem; padding: 1rem;">
+                    <span style="font-weight: 600; color: var(--accent-green-bright); font-size: 0.85rem;">Click to upload calibration standards file (.txt / .csv)</span>
+                    <input type="file" id="calibFile" accept=".txt,.csv" onchange="handleCalibrationFileUpload(event)" style="display: none;">
+                </div>
+                <div id="calibImportStatus" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;"></div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="standardsTable">
+                        <thead>
+                            <tr>
+                                <th>Standard ID</th>
+                                <th>Amount Ratio <i>n</i><sub>ref</sub> / <i>n</i><sub>IS</sub></th>
+                                <th>Analyte Area (<i>I</i><sub>x</sub>)</th>
+                                <th>IS Area (<i>I</i><sub>y</sub>)</th>
+                                <th>Area Ratio (<i>I</i><sub>x</sub> / <i>I</i><sub>y</sub>)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standardsBody"></tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 1rem;">
+                        <h4 style="color: var(--text-main); font-size: 1rem;">Regression Curve & Uncertainty</h4>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <label for="errorBarType" style="font-size: 0.85rem; color: var(--text-muted);">Error Bars:</label>
+                            <select id="errorBarType" onchange="renderCalculator()" style="width: auto; padding: 0.3rem 0.6rem; font-size: 0.85rem;">
+                                <option value="sd">Standard Deviation (SD)</option>
+                                <option value="sem">Standard Error (SEM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="calibrationChart"></canvas>
+                    </div>
+                    <div class="regression-stats" id="regressionStats">
+                        <div>Equation (Averaged): <span id="regEquation">y = 0.0000x + 0.0000</span></div>
+                        <div>R² Fit: <span id="regR2">0.0000</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Unknown Samples Import</h3>
+                <div class="file-drop-zone" onclick="document.getElementById('peakFile').click()">
+                    <span style="font-weight: 600; color: var(--accent-green-bright);">Click to upload unknown peak area file (.txt / .csv)</span>
+                    <input type="file" id="peakFile" accept=".txt,.csv" onchange="handleFileUpload(event)">
+                </div>
+
+                <div id="importStatus" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Using default unknown sample set.
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Unknown Sample ID</th>
+                                <th>Analyte Area (<i>I</i><sub>x</sub>)</th>
+                                <th>IS Area (<i>I</i><sub>y</sub>)</th>
+                                <th>Area Ratio (<i>I</i><sub>x</sub> / <i>I</i><sub>y</sub>)</th>
+                                <th>Interpolated Amount Ratio <i>n</i><sub>ref</sub> / <i>n</i><sub>IS</sub></th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="ui-controller.js"></script>
+</body>
+</html>
