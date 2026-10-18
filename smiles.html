@@ -20,29 +20,36 @@
             <!-- Amino Acid Sequence Converter Box -->
             <div class="card">
                 <h3>Amino Acid Sequence to SMILES & Mass</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Enter a 1-letter peptide sequence (e.g., ACDEF, GFF) to automatically generate its SMILES string and structure.</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Enter a 1-letter peptide sequence (e.g., ACDEF, GFF) and click Generate Structure to compute its properties.</p>
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <input type="text" id="peptideInput" value="ACDEF" placeholder="e.g. ACDEF" oninput="convertPeptideToSmiles()" style="font-family: monospace; font-size: 1.1rem; padding: 0.8rem; text-transform: uppercase;">
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">Presets:</span>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('ACDEF')">ACDEF</button>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('VYV')">VYV</button>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('GFF')">GFF</button>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('FLW')">FLW</button>
+                    <input type="text" id="peptideInput" value="ACDEF" placeholder="e.g. ACDEF" style="font-family: monospace; font-size: 1.1rem; padding: 0.8rem; text-transform: uppercase;">
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">Presets:</span>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('ACDEF')">ACDEF</button>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('VYV')">VYV</button>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('GFF')">GFF</button>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setPeptidePreset('FLW')">FLW</button>
+                        </div>
+                        <button class="btn" onclick="convertPeptideToSmiles()" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Generate Structure</button>
                     </div>
                 </div>
             </div>
 
+            <!-- SMILES Input & Structure Box -->
             <div class="card">
                 <h3>SMILES String & 2D Structure Preview</h3>
                 <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem;">
-                    <input type="text" id="smilesInput" value="CC(=O)OC1=CC=CC=C1C(=O)O" placeholder="e.g. CC(=O)OC1=CC=CC=C1C(=O)O (Aspirin)" oninput="convertSmilesToMass()" style="font-family: monospace; font-size: 1.1rem; padding: 0.8rem;">
+                    <input type="text" id="smilesInput" value="CC(=O)OC1=CC=CC=C1C(=O)O" placeholder="e.g. CC(=O)OC1=CC=CC=C1C(=O)O (Aspirin)" style="font-family: monospace; font-size: 1.1rem; padding: 0.8rem;">
                     
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">Small Molecule Presets:</span>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CC(=O)OC1=CC=CC=C1C(=O)O')">Aspirin</button>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')">Caffeine</button>
-                        <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CC(C)CC1=CC=C(C=C1)C(C)C(=O)O')">Ibuprofen</button>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">Small Molecule Presets:</span>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CC(=O)OC1=CC=CC=C1C(=O)O')">Aspirin</button>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')">Caffeine</button>
+                            <button class="btn btn-secondary" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;" onclick="setSmilesPreset('CC(C)CC1=CC=C(C=C1)C(C)C(=O)O')">Ibuprofen</button>
+                        </div>
+                        <button class="btn" onclick="convertSmilesToMass()" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Generate Structure</button>
                     </div>
                 </div>
 

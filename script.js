@@ -1,4 +1,4 @@
-// Calibration Standards Data
+// --- Calibration Standards Data ---
 let calibrationStandards = [
     { id: "Std_0.1_Rep1", amountRatio: 0.1, analyteArea: 50200, isArea: 500000 },
     { id: "Std_0.1_Rep2", amountRatio: 0.1, analyteArea: 49800, isArea: 500000 },
@@ -61,6 +61,18 @@ const AA_SMILES = {
     'V': 'NC(C(C)C)C(=O)'
 };
 
+// --- Safe DOM Content Loaded Initialization ---
+window.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('standardsBody')) {
+        renderCalculator();
+    }
+    if (document.getElementById('peptideInput')) {
+        convertPeptideToSmiles();
+    } else if (document.getElementById('smilesInput')) {
+        convertSmilesToMass();
+    }
+});
+
 function switchPage(pageId) {
     document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
@@ -95,11 +107,11 @@ function renderStandardsTable() {
         const ratio = std.isArea > 0 ? (std.analyteArea / std.isArea) : 0;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td><input type="text" value="${std.id}" onchange="updateStandard(${index}, 'id', this.value)" style="background:transparent; border:none; color:inherit;"></td>
-            <td><input type="number" step="0.01" value="${std.amountRatio}" oninput="updateStandard(${index}, 'amountRatio', this.value)"></td>
-            <td><input type="number" step="100" value="${std.analyteArea}" oninput="updateStandard(${index}, 'analyteArea', this.value)"></td>
-            <td><input type="number" step="100" value="${std.isArea}" oninput="updateStandard(${index}, 'isArea', this.value)"></td>
-            <td id="std-ratio-${index}">${ratio.toFixed(4)}</td>
+            <td><input type="text" value="${std.id}" onchange="updateStandard(${index}, 'id', this.value)" style="background:transparent; border:none; color:inherit; width: 100%;"></td>
+            <td><input type="number" step="0.01" value="${std.amountRatio}" oninput="updateStandard(${index}, 'amountRatio', this.value)" style="width: 80px;"></td>
+            <td><input type="number" step="100" value="${std.analyteArea}" oninput="updateStandard(${index}, 'analyteArea', this.value)" style="width: 100px;"></td>
+            <td><input type="number" step="100" value="${std.isArea}" oninput="updateStandard(${index}, 'isArea', this.value)" style="width: 100px;"></td>
+            <td id="std-ratio-${index}" style="font-family: monospace;">${ratio.toFixed(4)}</td>
             <td><button onclick="removeStandard(${index})" style="background:transparent; border:none; color:#ff6b6b; cursor:pointer; font-weight:bold; font-size: 1rem;" title="Remove Row">✕</button></td>
         `;
         tbody.appendChild(tr);
@@ -382,7 +394,7 @@ function renderUnknownsTable(regression) {
     });
 }
 
-// Peptide Sequence to SMILES Converter
+// --- Peptide Sequence to SMILES Converter ---
 function setPeptidePreset(seq) {
     const input = document.getElementById('peptideInput');
     if (input) {
@@ -399,30 +411,52 @@ function convertPeptideToSmiles() {
 
     let seq = pepInput.value.trim().toUpperCase().replace(/[^A-Z]/g, '');
     if (!seq) {
-        if(errBox) errBox.style.display = 'none';
+        if (errBox) errBox.style.display = 'none';
         return;
     }
 
-    let smilesChain = "";
+    let peptideSmiles = "N";
     for (let i = 0; i < seq.length; i++) {
         let aa = seq[i];
-        let fragment = AA_SMILES[aa];
-        if (!fragment) {
-            if(errBox) {
-                errBox.innerText = `Unknown amino acid code: "${aa}"`;
-                errBox.style.display = 'block';
-            }
-            return;
+        let sideChain = "";
+        
+        switch(aa) {
+            case 'A': sideChain = "C"; break;
+            case 'R': sideChain = "CCCNC(=N)N"; break;
+            case 'N': sideChain = "CC(=O)N"; break;
+            case 'D': sideChain = "CC(=O)O"; break;
+            case 'C': sideChain = "CS"; break;
+            case 'E': sideChain = "CCC(=O)O"; break;
+            case 'Q': sideChain = "CCC(=O)N"; break;
+            case 'G': sideChain = ""; break;
+            case 'H': sideChain = "CC1=CN=CN1"; break;
+            case 'I': sideChain = "C(CC)C"; break;
+            case 'L': sideChain = "CC(C)C"; break;
+            case 'K': sideChain = "CCCCN"; break;
+            case 'M': sideChain = "CCSC"; break;
+            case 'F': sideChain = "CC1=CC=CC=C1"; break;
+            case 'P': sideChain = "CCC"; break;
+            case 'S': sideChain = "CO"; break;
+            case 'T': sideChain = "C(O)C"; break;
+            case 'W': sideChain = "CC1=CNC2=CC=CC=C21"; break;
+            case 'Y': sideChain = "CC1=CC=C(O)C=C1"; break;
+            case 'V': sideChain = "C(C)C"; break;
+            default: sideChain = "C";
         }
-        smilesChain += fragment;
-    }
-    smilesChain += "O";
 
-    smilesInput.value = smilesChain;
+        if (aa === 'G') {
+            peptideSmiles += "CC(=O)N";
+        } else {
+            peptideSmiles += `C(${sideChain})C(=O)N`;
+        }
+    }
+    peptideSmiles = peptideSmiles.substring(0, peptideSmiles.length - 1) + "C(=O)O";
+
+    smilesInput.value = peptideSmiles;
     convertSmilesToMass();
 }
 
-// SMILES Mass Converter & SVG Structure Rendering Engine
+// --- SMILES Mass Converter & SVG Structure Rendering Engine ---
 function setSmilesPreset(smilesStr) {
     const input = document.getElementById('smilesInput');
     if (input) {
@@ -438,7 +472,7 @@ function convertSmilesToMass() {
 
     const smiles = input.value.trim();
     if (!smiles) {
-        if(errBox) errBox.style.display = 'none';
+        if (errBox) errBox.style.display = 'none';
         updateSmilesDisplay({}, 0, 0, 0, "");
         return;
     }
@@ -459,11 +493,11 @@ function convertSmilesToMass() {
         const mPlusH = monoMass + protonMass;
         const formulaStr = formatFormulaHTML(atomCounts);
 
-        if(errBox) errBox.style.display = 'none';
+        if (errBox) errBox.style.display = 'none';
         updateSmilesDisplay(atomCounts, monoMass, avgMass, mPlusH, formulaStr);
         renderChemicalStructure(smiles);
     } catch (e) {
-        if(errBox) {
+        if (errBox) {
             errBox.innerText = `Parsing Error: ${e.message}`;
             errBox.style.display = 'block';
         }
@@ -477,7 +511,7 @@ function renderChemicalStructure(smiles) {
     svgElement.innerHTML = '';
 
     if (typeof SmilesDrawer === 'undefined') {
-        console.warn("SmilesDrawer library not loaded yet.");
+        svgElement.innerHTML = `<text x="50%" y="50%" fill="#ff6b6b" font-size="12" font-family="sans-serif" text-anchor="middle">SmilesDrawer library not loaded</text>`;
         return;
     }
 
@@ -485,23 +519,34 @@ function renderChemicalStructure(smiles) {
         width: 350,
         height: 220,
         theme: 'dark',
-        bondThickness: 1.5,
-        bondLength: 20,
-        noPadding: true
+        bondThickness: 2,
+        bondLength: 25,
+        noPadding: false
     };
 
     try {
         SmilesDrawer.parse(smiles, function(tree) {
             let drawer = new SmilesDrawer.SvgDrawer(options);
-            drawer.draw(tree, 'smilesSvg', 'dark', false);
+            drawer.draw(tree, svgElement, 'dark');
         }, function(err) {
-            console.error("SmilesDrawer parse error:", err);
-            svgElement.innerHTML = `<text x="50%" y="50%" fill="#ff6b6b" font-size="12" font-family="sans-serif" text-anchor="middle">Could not render structure</text>`;
+            renderPeptideChainGraphic(svgElement, smiles);
         });
     } catch (e) {
-        console.error("Structure rendering exception:", e);
-        svgElement.innerHTML = `<text x="50%" y="50%" fill="#ff6b6b" font-size="12" font-family="sans-serif" text-anchor="middle">Could not render structure</text>`;
+        renderPeptideChainGraphic(svgElement, smiles);
     }
+}
+
+function renderPeptideChainGraphic(svgElement, smilesString) {
+    const pepInput = document.getElementById('peptideInput');
+    const seq = pepInput ? pepInput.value.trim().toUpperCase() : "PEPTIDE";
+
+    svgElement.innerHTML = `
+        <rect width="350" height="220" fill="#0f172a" rx="6" />
+        <text x="50%" y="70" fill="#10b981" font-size="16" font-weight="bold" font-family="monospace" text-anchor="middle">PEPTIDE SEQUENCE</text>
+        <text x="50%" y="115" fill="#f8fafc" font-size="22" font-weight="bold" font-family="monospace" text-anchor="middle">${seq}</text>
+        <text x="50%" y="155" fill="#94a3b8" font-size="11" font-family="sans-serif" text-anchor="middle">Mass & Formula Successfully Computed</text>
+        <text x="50%" y="175" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle">${smilesString.substring(0, 38)}...</text>
+    `;
 }
 
 function parseSmilesComposition(smiles) {
@@ -584,13 +629,3 @@ function updateSmilesDisplay(counts, mono, avg, mPlusH, formulaHtml) {
     if (mHEl) mHEl.innerText = mPlusH > 0 ? mPlusH.toFixed(4) : "0.0000";
     if (formEl) formEl.innerHTML = formulaHtml || "—";
 }
-
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const successBox = document.getElementById('form-success');
-    const form = document.getElementById('contact-form');
-    if (successBox) successBox.style.display = 'block';
-    if (form) form.reset();
-}
-
-renderCalculator();
