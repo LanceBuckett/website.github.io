@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
 }
 
 header {
@@ -39,14 +40,16 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .brand-logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 1px;
     cursor: pointer;
@@ -58,7 +61,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1.2rem;
     flex-wrap: wrap;
 }
 
@@ -66,8 +69,10 @@ nav a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.95rem;
     transition: color 0.2s;
     cursor: pointer;
+    padding: 0.3rem 0;
 }
 
 nav a:hover, nav a.active {
@@ -78,7 +83,7 @@ nav a:hover, nav a.active {
     display: none;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 2.5rem 1.5rem;
     flex: 1;
     width: 100%;
 }
@@ -89,28 +94,28 @@ nav a:hover, nav a.active {
 
 .hero {
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
     line-height: 1.2;
 }
 
 .hero h1 span { color: var(--accent-green-bright); }
 
 .hero p {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     max-width: 800px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 2rem;
 }
 
 .btn {
     background-color: var(--accent-green);
     color: #fff;
-    padding: 0.8rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
@@ -118,6 +123,8 @@ nav a:hover, nav a.active {
     border: none;
     cursor: pointer;
     transition: background 0.2s;
+    font-size: 0.95rem;
+    text-align: center;
 }
 
 .btn:hover { background-color: var(--accent-green-bright); }
@@ -126,7 +133,14 @@ nav a:hover, nav a.active {
     background-color: transparent;
     border: 1px solid var(--accent-green-bright);
     color: var(--accent-green-bright);
-    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 500px) {
+    .btn-secondary {
+        margin-left: 0.5rem;
+        margin-top: 0;
+    }
 }
 
 .btn-secondary:hover {
@@ -136,8 +150,8 @@ nav a:hover, nav a.active {
 
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -145,39 +159,47 @@ nav a:hover, nav a.active {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .card h3 {
     color: var(--accent-green-bright);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
 }
 
 .calc-grid-full {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .chart-container {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1rem;
     position: relative;
-    height: 350px;
+    height: 300px;
     width: 100%;
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+        padding: 1.5rem;
+    }
 }
 
 .regression-stats {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     background-color: var(--bg-dark);
     border: 1px solid var(--accent-green-bright);
     padding: 1rem;
     border-radius: 6px;
     margin-top: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     flex-wrap: wrap;
 }
 
@@ -188,7 +210,7 @@ nav a:hover, nav a.active {
 
 .file-drop-zone {
     border: 2px dashed var(--border-color);
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     border-radius: 8px;
     background-color: var(--bg-dark);
@@ -209,12 +231,13 @@ nav a:hover, nav a.active {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    min-width: 600px; /* Allows horizontal scrolling on small mobile screens */
 }
 
 .data-table th, .data-table td {
     border: 1px solid var(--border-color);
-    padding: 0.5rem 0.7rem;
+    padding: 0.5rem;
     text-align: left;
 }
 
@@ -230,10 +253,10 @@ nav a:hover, nav a.active {
 input, textarea, select {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
-    padding: 0.5rem;
+    padding: 0.6rem;
     color: var(--text-main);
     border-radius: 4px;
-    font-size: 0.95rem;
+    font-size: 1rem; /* Prevents auto-zoom on iOS mobile browsers */
     width: 100%;
 }
 
@@ -243,8 +266,8 @@ input:focus, textarea:focus, select:focus {
 
 .smiles-output-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
     margin-top: 1.5rem;
 }
 
@@ -252,22 +275,22 @@ input:focus, textarea:focus, select:focus {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    padding: 1.2rem;
+    padding: 1rem;
     text-align: center;
 }
 
 .stat-box .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .stat-box .stat-value {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--accent-green-bright);
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
 }
 
 .structure-preview-box {
@@ -278,7 +301,7 @@ input:focus, textarea:focus, select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 240px;
+    min-height: 220px;
     margin-top: 1.5rem;
     overflow: hidden;
 }
@@ -292,7 +315,7 @@ input:focus, textarea:focus, select:focus {
 form.contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -312,8 +335,46 @@ form.contact-form {
 footer {
     border-top: 1px solid var(--border-color);
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-top: auto;
+}
+
+/* --- Mobile Specific Media Queries --- */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        gap: 0.8rem;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    nav a {
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .page-view {
+        padding: 1.5rem 1rem;
+    }
+
+    .card {
+        padding: 1.2rem;
+    }
 }
