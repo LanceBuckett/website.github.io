@@ -34,7 +34,7 @@
     <main id="page-home" class="page-view active">
         <section class="hero">
             <h1>Automated <span>IDMS Workflows</span> & Bioanalytics</h1>
-            <p><strong>We turn your equipment into pipetting robots (compatible with most vendor autosamplers).</strong> Nisotopes bridges stable isotope dilution mass spectrometry with automated liquid handling and turnkey ISO 17025 validation frameworks.</p>
+            <p><strong>We turn your equipment into pipetting robots (compatible with most vendor autosamplers).</strong> Nisotopes bridges stable isotope dilution mass spectrometry with automated liquid handling and turnkey ISO 17025 validation frameworks[cite: 3].</p>
             <div>
                 <button class="btn" onclick="switchPage('products')">Explore Assay Kits</button>
                 <button class="btn btn-secondary" onclick="switchPage('calculator')">Launch Calibration Workstation</button>
@@ -43,19 +43,19 @@
 
         <div class="grid-3">
             <div class="card">
-                <img src="assets/images/kits.png" alt="Nisotopes Kits" style="width: 100%; height: 140px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                <img src="assets/images/kits.png" alt="Nisotopes Kits" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
                 <h3>Nisotopes Kits™</h3>
-                <p>Pre-dispensed, lyophilized isotope spike plates engineered for rapid, error-free volumetric preparation.</p>
+                <p>Pre-dispensed, lyophilized isotope spike plates engineered for rapid, error-free volumetric preparation[cite: 1].</p>
             </div>
             <div class="card">
-                <img src="assets/images/autoscript.png" alt="AutoScript" style="width: 100%; height: 140px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                <img src="assets/images/autoscript.png" alt="AutoScript" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
                 <h3>AutoScript™</h3>
-                <p>Validated automation scripts tailored for major liquid handlers to eliminate batch-to-batch CV variance.</p>
+                <p>Validated automation scripts tailored for major liquid handlers to eliminate batch-to-batch CV variance[cite: 2].</p>
             </div>
             <div class="card">
-                <img src="assets/images/qualify.png" alt="Qualify Framework" style="width: 100%; height: 140px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                <img src="assets/images/qualify.png" alt="Qualify Framework" style="width: 100%; height: 160px; object-fit: cover; border-radius: 4px; margin-bottom: 1rem;" onerror="this.style.display='none'">
                 <h3>Qualify™ Framework</h3>
-                <p>Complete regulatory and GUM uncertainty compliance packages built for early-stage biopharma & CROs.</p>
+                <p>Complete regulatory and GUM uncertainty compliance packages built for early-stage biopharma & CROs[cite: 3].</p>
             </div>
         </div>
     </main>
@@ -63,18 +63,110 @@
     <main id="page-products" class="page-view">
         <h2>Targeted Assay Kits</h2>
         <p style="color: var(--text-muted); margin-bottom: 2rem;">Pre-formulated stable isotope dilution mass spectrometry (IDMS) standards.</p>
+        
+        <!-- Expanded 13C Stable Isotope Plates Feature Block -->
+        <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <img src="assets/images/kits.png" alt="13C Stable Isotope Plates" style="width: 100%; border-radius: 6px; object-fit: cover; max-height: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <h3 style="color: var(--accent-green-bright); font-size: 1.5rem; margin-bottom: 1rem;"><sup>13</sup>C Stable Isotope Plates™</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+                    High-purity isotopic spikes pre-formatted in 96-well microplate configurations with matrix barcodes[cite: 1]. These plates turn your standard laboratory setup into automated pipetting workstations, eliminating manual pipetting steps and reducing sample preparation variance[cite: 2].
+                </p>
+                <ul style="color: var(--text-muted); font-size: 0.9rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <li><strong>Lyophilized Precision:</strong> Pre-measured <sup>13</sup>C-labeled internal standard cakes optimized for instant reconstitution and minimal volumetric error[cite: 1].</li>
+                    <li><strong>Matrix Barcoding:</strong> Integrated 2D and linear barcodes for seamless, error-free sample tracking across high-throughput LC-MS/MS and AEMS runs[cite: 1].</li>
+                    <li><strong>Universal Autosampler Ready:</strong> Formatted to drop directly into standard microplate nests, ensuring full compatibility with major vendor autosamplers and liquid handlers[cite: 2].</li>
+                    <li><strong>Enhanced Batch Reproducibility:</strong> Standardized multi-well layouts eliminate cross-contamination risks and deliver tight analytical CVs[cite: 2].</li>
+                </ul>
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn" onclick="switchPage('contact')">Request Evaluation Sample</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expanded Custom Synthesis Spike Mixes Feature Block -->
+        <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h3 style="color: var(--accent-green-bright); font-size: 1.5rem; margin-bottom: 1rem;">Custom Synthesis Spike Mixes™</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+                    Tailor-made internal standard mixtures synthesized to meet specialized biopharma quantitation demands. Whether you are quantifying therapeutic oligonucleotides, complex cyclic peptides, or intact protein biomarkers, our custom synthesis workflow delivers isotopically enriched reference standards matched precisely to your target compounds[cite: 3].
+                </p>
+                <ul style="color: var(--text-muted); font-size: 0.9rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <li><strong>High Isotopic Enrichment:</strong> Customized stable isotope labeling (<sup>13</sup>C, <sup>15</sup>N, <sup>2</sup>H, <sup>18</sup>O) achieving >99 atom % enrichment to eliminate spectral overlap in tandem mass spectrometry (MS2)[cite: 3].</li>
+                    <li><strong>Multiplexed Internal Standards:</strong> Co-formulated multi-analyte spike cocktails engineered for single-injection internal calibration across complex bioanalytical panels.</li>
+                    <li><strong>Flexible Format Delivery:</strong> Supplied as custom-formatted liquid concentrates, single-use vials, or pre-dispensed 96/384-well microplate layouts ready for automated liquid handler integration[cite: 1, 2].</li>
+                    <li><strong>Rigorous Certificate of Analysis (CoA):</strong> Complete structural characterization via high-resolution mass spectrometry (HRMS), NMR, HPLC purity analysis, and GUM uncertainty evaluation[cite: 3].</li>
+                </ul>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="switchPage('contact')">Request Custom Synthesis Quote</button>
+                    <button class="btn btn-secondary" onclick="switchPage('smiles')">Parse Custom Sequence / Structure</button>
+                </div>
+            </div>
+            <div>
+                <img src="assets/images/qualify.png" alt="Custom Synthesis Spike Mixes" style="width: 100%; border-radius: 6px; object-fit: cover; max-height: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- Expanded Auto-Calibration Standards Feature Block -->
+        <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <img src="assets/images/autoscript.png" alt="Auto-Calibration Standards" style="width: 100%; border-radius: 6px; object-fit: cover; max-height: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <h3 style="color: var(--accent-green-bright); font-size: 1.5rem; margin-bottom: 1rem;">Auto-Calibration Standards™</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+                    Calibrated reference standards designed for direct integration into automated sample prep decks[cite: 2]. Pre-weighed and certified to precise concentration gradients, these standards streamline multi-point IDMS linear regression setup and remove manual dilution steps on robotic liquid handlers[cite: 2].
+                </p>
+                <ul style="color: var(--text-muted); font-size: 0.9rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <li><strong>Pre-Calculated Amount Ratios (<i>n</i><sub>ref</sub> / <i>n</i><sub>IS</sub>):</strong> Standardized concentrations paired with matching isotopic standards for direct export into the Nisotopes IDMS Calculator[cite: 1, 2].</li>
+                    <li><strong>Automated Deck Ready:</strong> Standard SBS-format reservoirs and microplates engineered for seamless gripping, barcode scanning, and liquid transfer across all major autosamplers[cite: 2].</li>
+                    <li><strong>Certified Traceability:</strong> Formulated using gravimetric preparation with ISO 17025 accredited gravimetric balances and NIST/BIPM traceable reference materials[cite: 3].</li>
+                    <li><strong>Minimal Reconstitution Drift:</strong> Rapid-dissolution matrices ensure homogenous mixing within seconds of solvent addition on automated shaker nests[cite: 2].</li>
+                </ul>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="switchPage('calculator')">Open IDMS Workstation</button>
+                    <button class="btn btn-secondary" onclick="switchPage('contact')">Request Standard Specs</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expanded Isotopic Purity Certificates Feature Block -->
+        <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h3 style="color: var(--accent-green-bright); font-size: 1.5rem; margin-bottom: 1rem;">Isotopic Purity Certificates™</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+                    Guaranteed isotopic enrichment (>99 atom % <sup>13</sup>C) provided with comprehensive GUM-compliant uncertainty documentation[cite: 3]. Our Certificates of Analysis (CoA) deliver rigorous, metrologically traceable validation required for high-precision IDMS and GLP-compliant quantitative assays[cite: 3].
+                </p>
+                <ul style="color: var(--text-muted); font-size: 0.9rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <li><strong>High-Resolution HRMS Verification:</strong> Full isotopic fine structure characterized on high-resolution mass spectrometers to accurately map isotopologue distributions and un-labeled mass spectral overlap[cite: 3].</li>
+                    <li><strong>GUM Uncertainty Budgets:</strong> Complete evaluation of combined measurement uncertainty according to the ISO/BIPM Guide to the Expression of Uncertainty in Measurement (GUM)[cite: 3].</li>
+                    <li><strong>Quantitative NMR (qNMR) Traceability:</strong> Chemical purity and absolute molar concentration validated using qNMR against NIST-traceable primary reference standards[cite: 3].</li>
+                    <li><strong>Turnkey Audit Documentation:</strong> PDF/A-formatted digital certificates with embedded raw data exports, ready for direct attachment to ISO 17025 and FDA 21 CFR Part 11 regulatory filings[cite: 3].</li>
+                </ul>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="switchPage('compliance')">Explore Qualify™ Framework</button>
+                    <button class="btn btn-secondary" onclick="switchPage('contact')">Request Sample CoA</button>
+                </div>
+            </div>
+            <div>
+                <img src="assets/images/qualify.png" alt="Isotopic Purity Certificates" style="width: 100%; border-radius: 6px; object-fit: cover; max-height: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" onerror="this.style.display='none'">
+            </div>
+        </div>
+
         <div class="grid-3">
             <div class="card">
-                <h3><sup>13</sup>C Stable Isotope Plates</h3>
-                <p>High-purity isotopic spikes pre-formatted in 96-well microplate configurations with matrix barcodes.</p>
+                <h3>Quality Control Pools</h3>
+                <p>Lyophilized biological matrix QC samples for long-term quantitative monitoring in GLP environments.</p>
             </div>
             <div class="card">
-                <h3>Custom Synthesis Spike Mixes</h3>
-                <p>Tailor-made internal standard mixtures synthesized to meet specialized biopharma quantitation demands.</p>
+                <h3>Method Validation Kits</h3>
+                <p>Pre-formatted validation plates engineered to measure recovery, matrix effects, and linearity in accordance with FDA/EMA guidelines[cite: 3].</p>
             </div>
             <div class="card">
-                <h3>Auto-Calibration Standards</h3>
-                <p>Calibrated reference standards designed for direct integration into automated sample prep decks.</p>
+                <h3>Custom Matrix Diluents</h3>
+                <p>Surrogate matrices formulated to match human serum, plasma, or cell lysate viscosity and ion-suppression characteristics.</p>
             </div>
         </div>
     </main>
@@ -83,9 +175,9 @@
         <h2>Automated Deck Integration</h2>
         <p style="color: var(--text-muted); margin-bottom: 2rem;">Seamless liquid handler protocols designed for high-throughput MS.</p>
         <div class="card">
-            <img src="assets/images/echo-ms-deck.png" alt="Automated Deck Integration" style="width: 100%; border-radius: 4px; margin-bottom: 1rem; max-height: 250px; object-fit: cover;" onerror="this.style.display='none'">
+            <img src="assets/images/autoscript.png" alt="Automated Deck Integration" style="width: 100%; border-radius: 4px; margin-bottom: 1rem; max-height: 280px; object-fit: cover;" onerror="this.style.display='none'">
             <h3>Turnkey Automation Protocols</h3>
-            <p>Our AutoScript™ library plugs directly into modern automated liquid handlers, enabling hands-free internal standard spiking, serial dilutions, and plate preparation with minimal operator intervention.</p>
+            <p>Our AutoScript™ library plugs directly into modern automated liquid handlers and vendor autosamplers[cite: 2], turning standard laboratory equipment into reliable pipetting robots for hands-free internal standard spiking, serial dilutions, and plate preparation with minimal operator intervention[cite: 2].</p>
         </div>
     </main>
 
@@ -263,9 +355,14 @@
     <main id="page-compliance" class="page-view">
         <h2>ISO 17025 & Regulatory Support</h2>
         <p style="color: var(--text-muted); margin-bottom: 2rem;">Qualify™ validation packages built for bioanalytical compliance.</p>
-        <div class="card">
-            <h3>Turnkey Audit Readiness</h3>
-            <p>We provide full measurement uncertainty evaluations, GUM-compliant calculation frameworks, and ISO 17025 documentation kits to streamline your CRO or lab accreditation process.</p>
+        <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center;">
+            <div>
+                <img src="assets/images/qualify.png" alt="Qualify Framework" style="width: 100%; border-radius: 6px; object-fit: cover; max-height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" onerror="this.style.display='none'">
+            </div>
+            <div>
+                <h3>Turnkey Audit Readiness</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">We provide full measurement uncertainty evaluations, GUM-compliant calculation frameworks, and ISO 17025 documentation kits to streamline your CRO or lab accreditation process[cite: 3].</p>
+            </div>
         </div>
     </main>
 
